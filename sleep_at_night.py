@@ -21,21 +21,18 @@ def main(sell_threshold=0.04):
     prices = {}
 
     while True:
-        holdings = client.get_holdings(avg_price_minutes_ago=1)
-        [
+        assets = client.get_holdings(avg_price_minutes_ago=1)
+        for currency in set(prices) - {a['currency'] for a in assets}:
             prices.pop(currency)
-            for currency in
-            set(prices) - {h['currency'] for h in holdings}
-        ]
 
-        for holding in holdings:
-            currency = holding['currency']
+        for asset in assets:
+            currency = asset['currency']
 
             if currency not in prices:
                 prices[currency] = (-1, -1)
 
             old_floor, old_avg_price = prices[currency]
-            new_floor, new_avg_price = old_floor, holding['avg_price']
+            new_floor, new_avg_price = old_floor, asset['avg_price']
             prices[currency] = (old_floor, new_avg_price)
 
             if new_avg_price > old_avg_price or old_floor < 0:

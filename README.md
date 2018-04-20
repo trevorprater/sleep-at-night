@@ -1,6 +1,6 @@
 ### Trailing Stop Loss Daemon
 
-This simple script implements a parallelized [trailing stop loss](https://www.investopedia.com/articles/trading/08/trailing-stop-loss.asp) algorithm; a commonly used strategy for preventing a portfolio's value from decreasing by more than *X%*, while allowing for unbounded gains.
+**sleep-at-night** implements a parallelized [trailing stop loss](https://www.investopedia.com/articles/trading/08/trailing-stop-loss.asp) algorithm; a commonly used strategy for preventing a portfolio's value from decreasing by more than *X%*, while allowing for unbounded gains.
 <br/>
 
 > A trailing stop order sets the stop price at a fixed

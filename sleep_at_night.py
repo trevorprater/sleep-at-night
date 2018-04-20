@@ -38,7 +38,7 @@ def main(num_workers=8):
         asset_data = [(a, sell_prices.get(a['currency'], -1))
                       for a in TRADER.get_holdings()]
 
-        for result in pool.imap_unordered(evaluate_asset, asset_data):
+        for result in workers.imap_unordered(evaluate_asset, asset_data):
             currency, sell_price = result
             if sell_price:
                 sell_prices[currency] = sell_price

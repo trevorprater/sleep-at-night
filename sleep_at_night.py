@@ -17,8 +17,7 @@ from trader_client import TraderClient
 
 
 def main(sell_threshold=0.04):
-    trader = TraderClient()
-    prices = {}
+    trader, prices = TraderClient(), {}
 
     while True:
         assets = trader.get_holdings(avg_price_minutes_ago=1)

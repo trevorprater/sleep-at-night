@@ -11,4 +11,4 @@ and a market order is submitted when the stop price is hit.
 
 ---
 
-*Due to the proprietary nature of the `TraderClient` package, it is not included in this project. In order to use this algo, you will need to implement two methods in a TraderClient class, `get_holdings` and `sell_all`.*
+*Due to the proprietary nature of the `trader_client` package, it is not included in this project. In order to use this algo, you will need to implement two methods in a `TraderClient` class, `get_holdings` and `sell_all`.*

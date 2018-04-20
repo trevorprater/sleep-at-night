@@ -20,7 +20,7 @@ def main(sell_threshold=0.04):
     trader, sell_limit = TraderClient(), {}
 
     while True:
-        for asset in trader.get_holdings()
+        for asset in trader.get_holdings():
             currency, price = asset['currency'], asset['price']
 
             sell_limit[currency] = max(

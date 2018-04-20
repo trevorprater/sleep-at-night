@@ -40,7 +40,6 @@ def main(sell_threshold=0.04):
                 if (new_avg_price - old_floor) > new_avg_price * sell_threshold:
                     new_floor = new_avg_price - (
                         new_avg_price * sell_threshold)
-
                 prices[currency] = (new_floor, new_avg_price)
 
             if new_avg_price <= new_floor:

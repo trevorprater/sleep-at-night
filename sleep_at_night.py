@@ -17,11 +17,11 @@ from trader_client import TraderClient
 
 
 def main(sell_threshold=0.04):
-    client = TraderClient()
+    trader = TraderClient()
     prices = {}
 
     while True:
-        assets = client.get_holdings(avg_price_minutes_ago=1)
+        assets = trader.get_holdings(avg_price_minutes_ago=1)
         for currency in set(prices) - {a['currency'] for a in assets}:
             prices.pop(currency)
 
@@ -44,7 +44,7 @@ def main(sell_threshold=0.04):
                 prices[currency] = (new_floor, new_avg_price)
 
             if new_avg_price <= new_floor:
-                client.sell_all(currency)
+                trader.sell_all(currency)
 
 
 if __name__ == '__main__':

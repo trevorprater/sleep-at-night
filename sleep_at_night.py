@@ -12,24 +12,38 @@ As the market price rises, the stop price rises by the trail amount,
 but if the stock price falls, the stop loss price doesn't change,
 and a market order is submitted when the stop price is hit.
 """
-
+from multiprocessing import Pool
 from trader_client import TraderClient
 
 
-def main(sell_threshold=0.04):
-    trader, sell_limit = TraderClient(), {}
+TRADER = TraderClient()
+MAX_DELTA = 0.05
 
+
+def evaluate_asset(asset_and_sell_price):
+    asset, sell_price = asset_and_sell_price
+    currency, market_price = asset['currency'], asset['price']
+    sell_price = max(sell_price, market_price * (1 - MAX_DELTA))
+
+    if market_price > sell_price:
+        return currency, sell_price
+    else:
+        TRADER.sell_all(currency)
+        return currency, -1
+
+
+def main(num_workers=8):
+    workers, sell_prices = Pool(num_workers), {}
     while True:
-        for asset in trader.get_holdings()
-            currency, price = asset['currency'], asset['price']
+        asset_data = [(a, sell_prices.get(a['currency'], -1))
+                      for a in TRADER.get_holdings()]
 
-            sell_limit[currency] = max(
-                    sell_limit.get(currency, -1),
-                    price * (1 - sell_threshold))
-
-            if price < sell_limit[currency]:
-                trader.sell_all(currency)
-                sell_limit.pop(currency)
+        for result in pool.imap_unordered(evaluate_asset, asset_data):
+            currency, sell_price = result
+            if sell_price:
+                sell_prices[currency] = sell_price
+            else:
+                sell_prices.pop(currency)
 
 
 if __name__ == '__main__':

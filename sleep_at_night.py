@@ -27,7 +27,6 @@ def main(sell_threshold=0.04):
 
         for asset in assets:
             currency = asset['currency']
-
             if currency not in prices:
                 prices[currency] = (-1, -1)
 

@@ -5,7 +5,6 @@ This simple script implements a parallelized trailing stop loss algorithm.
 
 > A trailing stop order sets the stop price at a fixed
 amount below the market price with an attached "trailing" amount.
-
 > As the market price rises, the stop price rises by the trail amount,
 but if the stock price falls, the stop loss price doesn't change,
 and a market order is submitted when the stop price is hit.

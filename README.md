@@ -1,7 +1,6 @@
 # Trailing Stop Loss Daemon
-## AKA sleep-aid
 
-This simple script implements a trailing stop loss algorithm.
+This simple script implements a parallelized trailing stop loss algorithm.
 <br/>
 
 A trailing stop order sets the stop price at a fixed

@@ -1,4 +1,4 @@
-# Trailing Stop Loss Daemon
+### Trailing Stop Loss Daemon
 
 This simple script implements a parallelized trailing stop loss algorithm.
 <br/>
